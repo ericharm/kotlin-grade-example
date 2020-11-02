@@ -1,4 +1,4 @@
-package com.example
+package com.ericharm
 import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.TextColor
 import com.googlecode.lanterna.gui2.*
