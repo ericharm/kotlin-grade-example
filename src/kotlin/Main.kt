@@ -1,35 +1,40 @@
 package com.ericharm
-import com.googlecode.lanterna.TerminalSize
-import com.googlecode.lanterna.TextColor
-import com.googlecode.lanterna.gui2.*
-import com.googlecode.lanterna.screen.Screen
 import com.googlecode.lanterna.screen.TerminalScreen
+import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
-import com.googlecode.lanterna.terminal.Terminal
+import com.googlecode.lanterna.input.KeyType
+
+class Hero(var location: Pair<Int, Int>) {
+    val x: Int
+        get() = location.first
+    val y: Int
+        get() = location.second
+    val character = "@"
+
+    fun move(byVector: Pair<Int, Int>) {
+        location = Pair(x + byVector.first, y + byVector.second)
+    }
+}
 
 fun main(args: Array<String>) {
     val terminal = DefaultTerminalFactory().createTerminal()
     val screen = TerminalScreen(terminal)
+    val tg = screen.newTextGraphics()
     screen.startScreen()
 
-    // Create panel to hold components
-    val panel = Panel()
-    panel.setLayoutManager(GridLayout(2))
+    val hero = Hero(Pair(10,10))
 
-    panel.addComponent(Label("Forename"))
-    panel.addComponent(TextBox())
-
-    panel.addComponent(Label("Surname"))
-    panel.addComponent(TextBox())
-
-    panel.addComponent(EmptySpace(TerminalSize(0,0)))
-    panel.addComponent(Button("Submit"));
-
-    // Create window to hold the panel
-    val window = BasicWindow()
-    window.setComponent(panel)
-
-    // Create gui and start gui
-    val gui = MultiWindowTextGUI(screen, DefaultWindowManager(), EmptySpace(TextColor.ANSI.BLUE))
-    gui.addWindowAndWait(window)
+    while (true) {
+        // render
+        screen.clear()
+        tg.putString(hero.x, hero.y, hero.character.toString())
+        screen.refresh()
+        // handle input
+        val key = terminal.readInput().getKeyType()
+        // update
+        if (key == KeyType.ArrowDown) hero.move(Pair(0, 1))
+        if (key == KeyType.ArrowUp) hero.move(Pair(0, -1))
+        if (key == KeyType.ArrowLeft) hero.move(Pair(-1, 0))
+        if (key == KeyType.ArrowRight) hero.move(Pair(1, 0))
+    }
 }
