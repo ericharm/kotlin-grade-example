@@ -23,6 +23,7 @@ apply plugin: 'application'
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     testImplementation("junit:junit:4.12") 
+    compile 'com.googlecode.lanterna:lanterna:3.0.4'
 }
 
 sourceSets {
