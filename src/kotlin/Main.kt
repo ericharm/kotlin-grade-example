@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
     while (true) {
         // render
         screen.clear()
-        tg.putString(hero.x, hero.y, hero.character.toString())
+        tg.putString(hero.x, hero.y, hero.character)
         screen.refresh()
         // handle input
         val key = terminal.readInput().getKeyType()
