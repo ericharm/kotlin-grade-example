@@ -1,3 +1,5 @@
 .git/
 build/
 .gradle/
+*.swp
+*.DS_Store
