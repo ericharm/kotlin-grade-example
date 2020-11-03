@@ -2,16 +2,16 @@ package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.input.KeyType
 
-class Level () {
-    object boulder : Entity(Pair(12, 13)) {
-        override val character = '0'
-    }
+class Boulder(override var location: Pair<Int, Int>) : Entity(location) {
+    override val character = '0'
+}
 
+class Level () {
     object hero : Entity(Pair(10, 10)) {
         override val character = '@'
     }
 
-    val boulders = listOf(boulder)
+    val boulders = listOf(Boulder(Pair(2,3)), Boulder(Pair(8, 12)))
 
     fun render(graphics: TextGraphics) {
         hero.render(graphics)

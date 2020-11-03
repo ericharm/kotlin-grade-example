@@ -1,7 +1,7 @@
 package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
 
-open class Entity(var location: Pair<Int, Int>) {
+open class Entity(open var location: Pair<Int, Int>) {
     val x: Int
         get() = location.first
     val y: Int
