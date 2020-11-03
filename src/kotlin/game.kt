@@ -24,7 +24,7 @@ class Game() {
     fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()
-        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '-', '|')
+        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(50, 20), '-', '|')
         level.render(graphics)
         screen.refresh()
     }

@@ -2,11 +2,12 @@ package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.input.KeyType
 
-class Boulder(override var location: Pair<Int, Int>) : Entity(location) {
-    override val character = '0'
-}
-
 class Level () {
+
+    class Boulder(override var location: Pair<Int, Int>) : Entity(location) {
+        override val character = '0'
+    }
+
     object hero : Entity(Pair(10, 10)) {
         override val character = '@'
     }
@@ -26,10 +27,9 @@ class Level () {
             KeyType.ArrowRight to Pair(1, 0)
         )[key]
         if (direction != null) {
-            val x = direction!!.first
-            val y = direction!!.second
+            val x = direction.first
+            val y = direction.second
             hero.move(x, y)
-            val collidingBoulders = boulders.filter { it.x != hero.x && it.y != hero.y }
             boulders.forEach { if (it.x == hero.x && it.y == hero.y) it.move(x, y) }
         }
     }

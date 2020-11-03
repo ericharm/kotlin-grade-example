@@ -13,11 +13,9 @@ open class Entity(open var location: Pair<Int, Int>) {
     }
 
     fun move(x: Int, y: Int) {
+        // first check for boundaries
+        // next find colliding entities and run onCollisionWith(entity)
+        // if the square is empty even after running onCollision, update location
         location = Pair(this.x + x, this.y + y)
-        // destinedTile = level.tiles[location.first][location.second]
-        // later we maybe use tiles to check the destinedTile for a list
-        // of entities, but for now we'll just loop all the entities in
-        // the level
-        // collidingEntities = level.entities.filter
     }
 }
