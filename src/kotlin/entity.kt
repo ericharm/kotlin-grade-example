@@ -12,7 +12,12 @@ open class Entity(var location: Pair<Int, Int>) {
         graphics.putString(x, y, character.toString())
     }
 
-    fun move(byVector: Pair<Int, Int>) {
-        location = Pair(x + byVector.first, y + byVector.second)
+    fun move(x: Int, y: Int) {
+        location = Pair(this.x + x, this.y + y)
+        // destinedTile = level.tiles[location.first][location.second]
+        // later we maybe use tiles to check the destinedTile for a list
+        // of entities, but for now we'll just loop all the entities in
+        // the level
+        // collidingEntities = level.entities.filter
     }
 }
