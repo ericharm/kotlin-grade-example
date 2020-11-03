@@ -9,9 +9,7 @@ class Game() {
     val level = Level()
 
     fun TextGraphics.drawRectangle(
-        position: TerminalPosition,
-        size: TerminalSize, horizontalChar: Char,
-        verticalChar: Char
+        position: TerminalPosition, size: TerminalSize, horizontalChar: Char, verticalChar: Char
     ) {
         val width = size.columns
         val height = size.rows
@@ -26,7 +24,7 @@ class Game() {
     fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()
-        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '*', '*')
+        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '-', '|')
         level.render(graphics)
         screen.refresh()
     }
