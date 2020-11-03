@@ -7,8 +7,12 @@ import com.googlecode.lanterna.terminal.Terminal
 import com.googlecode.lanterna.input.KeyType
 
 class Game() {
+    object boulder : Entity(Pair(12, 13)) {
+        override val character = '0'
+    }
+
     object hero : Entity(Pair(10, 10)) {
-        override val character = "@"
+        override val character = '@'
     }
 
     fun TextGraphics.drawRectangle(position: TerminalPosition, size: TerminalSize, horizontalChar: Char,verticalChar: Char) {
@@ -16,17 +20,18 @@ class Game() {
         val height = size.rows
         val x = position.column
         val y = position.row
-        val bottom = TerminalPosition(x, position.row + size.rows - 1)
+        val bottom = TerminalPosition(x, y + height - 1)
         drawRectangle(position, size, verticalChar)
         putString(position, horizontalChar.toString().repeat(width))
         putString(bottom, horizontalChar.toString().repeat(width))
     }
 
     fun render(screen: TerminalScreen) {
-        val tg = screen.newTextGraphics()
         screen.clear()
-        tg.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '*', '*')
-        tg.putString(hero.x, hero.y, hero.character)
+        val graphics = screen.newTextGraphics()
+        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '*', '*')
+        hero.render(graphics)
+        boulder.render(graphics)
         screen.refresh()
     }
 
