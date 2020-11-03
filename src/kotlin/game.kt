@@ -18,7 +18,9 @@ fun TextGraphics.drawRectangle(position: TerminalPosition, size: TerminalSize, h
 }
 
 class Game() {
-    fun render(screen: TerminalScreen, hero: Hero) {
+    val hero = Hero(Pair(10,10))
+
+    fun render(screen: TerminalScreen) {
         val tg = screen.newTextGraphics()
         screen.clear()
         tg.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '*', '*')
@@ -28,7 +30,7 @@ class Game() {
 
     fun handleInput(terminal: Terminal) = terminal.readInput().getKeyType()
 
-    fun update(key: KeyType, hero: Hero) {
+    fun update(key: KeyType) {
         if (key == KeyType.ArrowDown) hero.move(Pair(0, 1))
         if (key == KeyType.ArrowUp) hero.move(Pair(0, -1))
         if (key == KeyType.ArrowLeft) hero.move(Pair(-1, 0))

@@ -6,13 +6,11 @@ fun main(args: Array<String>) {
     val terminal = DefaultTerminalFactory().createTerminal()
     val screen = TerminalScreen(terminal)
     screen.startScreen()
-
-    val hero = Hero(Pair(10,10))
     val game = Game()
 
     while (true) {
-        game.render(screen, hero)
+        game.render(screen)
         val key = game.handleInput(terminal)
-        game.update(key, hero)
+        game.update(key)
     }
 }
