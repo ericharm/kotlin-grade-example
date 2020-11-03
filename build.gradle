@@ -33,4 +33,4 @@ sourceSets {
 
 // This tells gradle to execute src/test/kotlin/com/example/Hello.kt 
 // when 'gradle run' is entered on the command line at the root folder
-mainClassName = 'com.ericharm.MainKt'
+mainClassName = 'com.ericharm.AppKt'
