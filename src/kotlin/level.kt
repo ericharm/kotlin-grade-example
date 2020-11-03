@@ -9,26 +9,29 @@ class Level () {
 
     object hero : Entity(Pair(10, 10)) {
         override val character = '@'
-
-        fun handleInput(key: KeyType) {
-            val direction = hashMapOf(
-                KeyType.ArrowDown to Pair(0, 1),
-                KeyType.ArrowUp to Pair(0, -1),
-                KeyType.ArrowLeft to Pair(-1, 0),
-                KeyType.ArrowRight to Pair(1, 0)
-            )[key]
-            if (direction != null) move(direction!!.first, direction!!.second)
-        }
     }
 
-    val entities = listOf(boulder, hero)
+    val boulders = listOf(boulder)
 
     fun render(graphics: TextGraphics) {
-        entities.forEach { it.render(graphics) }
+        hero.render(graphics)
+        boulders.forEach { it.render(graphics) }
     }
 
     fun handleInput(key: KeyType) {
-        hero.handleInput(key)
+        val direction = hashMapOf(
+            KeyType.ArrowDown to Pair(0, 1),
+            KeyType.ArrowUp to Pair(0, -1),
+            KeyType.ArrowLeft to Pair(-1, 0),
+            KeyType.ArrowRight to Pair(1, 0)
+        )[key]
+        if (direction != null) {
+            val x = direction!!.first
+            val y = direction!!.second
+            hero.move(x, y)
+            val collidingBoulders = boulders.filter { it.x != hero.x && it.y != hero.y }
+            boulders.forEach { if (it.x == hero.x && it.y == hero.y) it.move(x, y) }
+        }
     }
 
     fun update() {
