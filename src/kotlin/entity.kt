@@ -16,4 +16,3 @@ open class Entity(var location: Pair<Int, Int>) {
         location = Pair(x + byVector.first, y + byVector.second)
     }
 }
-

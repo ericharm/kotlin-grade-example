@@ -3,19 +3,16 @@ import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.TerminalPosition
 import com.googlecode.lanterna.TerminalSize
-import com.googlecode.lanterna.terminal.Terminal
 import com.googlecode.lanterna.input.KeyType
 
 class Game() {
-    object boulder : Entity(Pair(12, 13)) {
-        override val character = '0'
-    }
+    val level = Level()
 
-    object hero : Entity(Pair(10, 10)) {
-        override val character = '@'
-    }
-
-    fun TextGraphics.drawRectangle(position: TerminalPosition, size: TerminalSize, horizontalChar: Char,verticalChar: Char) {
+    fun TextGraphics.drawRectangle(
+        position: TerminalPosition,
+        size: TerminalSize, horizontalChar: Char,
+        verticalChar: Char
+    ) {
         val width = size.columns
         val height = size.rows
         val x = position.column
@@ -30,17 +27,15 @@ class Game() {
         screen.clear()
         val graphics = screen.newTextGraphics()
         graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(22, 18), '*', '*')
-        hero.render(graphics)
-        boulder.render(graphics)
+        level.render(graphics)
         screen.refresh()
     }
 
-    fun handleInput(terminal: Terminal) = terminal.readInput().getKeyType()
+    fun handleInput(key: KeyType) {
+        level.handleInput(key)
+    }
 
-    fun update(key: KeyType) {
-        if (key == KeyType.ArrowDown) hero.move(Pair(0, 1))
-        if (key == KeyType.ArrowUp) hero.move(Pair(0, -1))
-        if (key == KeyType.ArrowLeft) hero.move(Pair(-1, 0))
-        if (key == KeyType.ArrowRight) hero.move(Pair(1, 0))
+    fun update() {
+        level.update()
     }
 }

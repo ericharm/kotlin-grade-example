@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
 
     while (true) {
         game.render(screen)
-        val key = game.handleInput(terminal)
-        game.update(key)
+        game.handleInput(terminal.readInput().getKeyType())
+        game.update()
     }
 }
