@@ -3,10 +3,6 @@ import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.input.KeyType
 
 class Level (val width: Int, val height: Int) {
-    class Boulder(override var location: Point) : Entity(location) {
-        override val character = '0'
-    }
-
     object hero : Entity(Point(10, 10)) {
         override val character = '@'
     }
