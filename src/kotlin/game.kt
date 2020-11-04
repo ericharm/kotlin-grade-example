@@ -1,4 +1,5 @@
 package com.ericharm
+import java.io.File
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.TerminalPosition
@@ -8,13 +9,7 @@ import com.googlecode.lanterna.input.KeyType
 class Game() {
     val levelWidth = 50
     val levelHeight = 20
-    val descriptor = """
-   
-  0 
-  @ 
-   
-"""
-
+    val descriptor = File("./data/1a.lvl")
     val level = Level(levelWidth, levelHeight, descriptor)
 
     fun TextGraphics.drawRectangle(
