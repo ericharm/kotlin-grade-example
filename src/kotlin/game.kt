@@ -8,7 +8,14 @@ import com.googlecode.lanterna.input.KeyType
 class Game() {
     val levelWidth = 50
     val levelHeight = 20
-    val level = Level(levelWidth, levelHeight)
+    val descriptor = """
+   
+  0 
+  @ 
+   
+"""
+
+    val level = Level(levelWidth, levelHeight, descriptor)
 
     fun TextGraphics.drawRectangle(
         position: TerminalPosition, size: TerminalSize, horizontalChar: Char, verticalChar: Char

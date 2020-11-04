@@ -17,6 +17,10 @@ open class Entity(open var location: Point) {
         location = Point(this.x + x, this.y + y)
     }
 
+    fun moveTo(x: Int, y: Int) {
+        location = Point(x, y)
+    }
+
     fun moveThroughLevel(level: Level, x: Int, y: Int): Boolean {
         val newLocation = Point(this.x + x, this.y + y)
         if (newLocation.inLevel(level)) {
