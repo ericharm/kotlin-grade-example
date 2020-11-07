@@ -10,8 +10,7 @@ class Level (val width: Int, val height: Int) {
         fun fromDescriptor(descriptor: String): Level {
             val rows = descriptor.split("\n").filter { it.length > 0 }
             val width = if (rows.size > 0) rows[0].length else 0
-            // again the +1s are unpleasant
-            val level = Level(width + 1, rows.size + 1)
+            val level = Level(width, rows.size)
             level.generate(descriptor)
             return level
         }
@@ -42,11 +41,10 @@ class Level (val width: Int, val height: Int) {
         val rows = descriptor.split("\n").filter { it.length > 0 }
         for (y: Int in 0..rows.size - 1) {
             for (x: Int in 0..rows[y].length - 1) {
-                // add one to account for border, come up with something nicer than this
-                if (rows[y][x] == '0') entities += Boulder(Point(x + 1, y + 1))
-                if (rows[y][x] == '#') entities += Wall(Point(x + 1, y + 1))
-                if (rows[y][x] == '^') entities += Pit(Point(x + 1, y + 1))
-                if (rows[y][x] == '@') hero.moveTo(x + 1, y + 1)
+                if (rows[y][x] == '0') entities += Boulder(Point(x, y))
+                if (rows[y][x] == '#') entities += Wall(Point(x, y))
+                if (rows[y][x] == '^') entities += Pit(Point(x, y))
+                if (rows[y][x] == '@') hero.moveTo(x, y)
             }
         }
         ScreenPosition.updateOffsetsForSize(TerminalSize(rows.size, rows[0].length))
