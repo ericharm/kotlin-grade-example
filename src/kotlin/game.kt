@@ -7,10 +7,10 @@ import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
 class Game() {
-    val levelWidth = 50
-    val levelHeight = 20
+    val width = 50
+    val height = 20
     val descriptor = File("./data/1a.lvl")
-    val level = Level(levelWidth, levelHeight, descriptor)
+    val level = Level.fromDescriptor(descriptor)
 
     fun TextGraphics.drawRectangle(
         position: TerminalPosition, size: TerminalSize, horizontalChar: Char, verticalChar: Char
@@ -28,7 +28,8 @@ class Game() {
     fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()
-        graphics.drawRectangle(TerminalPosition(0, 0), TerminalSize(levelWidth, levelHeight), '-', '|')
+        val size = screen.getTerminal().getTerminalSize()
+        graphics.drawRectangle(TerminalPosition(0, 0), size, '-', '|')
         level.render(graphics)
         screen.refresh()
     }
