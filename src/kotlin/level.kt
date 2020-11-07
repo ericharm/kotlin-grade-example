@@ -2,6 +2,7 @@ package com.ericharm
 import java.io.File
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.TextColor
+import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
 class Level (val width: Int, val height: Int) {
@@ -48,6 +49,7 @@ class Level (val width: Int, val height: Int) {
                 if (rows[y][x] == '@') hero.moveTo(x + 1, y + 1)
             }
         }
+        ScreenPosition.updateOffsetsForSize(TerminalSize(rows.size, rows[0].length))
     }
 
     fun pluckEntity(entity: Entity) {

@@ -11,7 +11,7 @@ open class Entity(open var location: Point) {
     open val character = TextCharacter('?')
 
     fun render(graphics: TextGraphics) {
-        graphics.setCharacter(x, y, character)
+        graphics.setCharacter(ScreenPosition.offsetX + x, ScreenPosition.offsetY + y, character)
     }
 
     fun move(x: Int, y: Int) {

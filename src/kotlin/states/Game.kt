@@ -7,8 +7,6 @@ import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
 class Game(): State {
-    val width = 50
-    val height = 20
     val descriptor = File("./data/1a.lvl")
     val level = Level.fromDescriptor(descriptor)
 
@@ -28,8 +26,7 @@ class Game(): State {
     override fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()
-        val size = screen.getTerminal().getTerminalSize()
-        graphics.drawRectangle(TerminalPosition(0, 0), size, '-', '|')
+        graphics.drawRectangle(TerminalPosition(0, 0), ScreenPosition.terminalSize, '-', '|')
         level.render(graphics)
         screen.refresh()
     }
