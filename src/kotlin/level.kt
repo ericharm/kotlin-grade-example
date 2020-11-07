@@ -8,7 +8,8 @@ class Level (val width: Int, val height: Int) {
         fun fromDescriptor(descriptor: String): Level {
             val rows = descriptor.split("\n").filter { it.length > 0 }
             val width = if (rows.size > 0) rows[0].length else 0
-            val level = Level(width, rows.size)
+            // again the +1s are unpleasant
+            val level = Level(width + 1, rows.size + 1)
             level.generate(descriptor)
             return level
         }
@@ -41,9 +42,15 @@ class Level (val width: Int, val height: Int) {
             for (x: Int in 0..rows[y].length - 1) {
                 // add one to account for border, come up with something nicer than this
                 if (rows[y][x] == '0') entities += Boulder(Point(x + 1, y + 1))
+                if (rows[y][x] == '#') entities += Wall(Point(x + 1, y + 1))
+                if (rows[y][x] == '^') entities += Target(Point(x + 1, y + 1))
                 if (rows[y][x] == '@') hero.moveTo(x + 1, y + 1)
             }
         }
+    }
+
+    fun pluckEntity(entity: Entity) {
+        entities = entities.filter { it != entity }
     }
 
     fun render(graphics: TextGraphics) {
