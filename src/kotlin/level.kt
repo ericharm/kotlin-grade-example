@@ -47,7 +47,8 @@ class Level (val width: Int, val height: Int) {
                 if (rows[y][x] == '@') hero.moveTo(x, y)
             }
         }
-        ScreenPosition.updateOffsetsForSize(TerminalSize(rows.size, rows[0].length))
+        val width = if (rows.size > 0) rows[0].length else 0
+        ScreenPosition.updateOffsetsForSize(TerminalSize(width, rows.size))
     }
 
     fun pluckEntity(entity: Entity) {
