@@ -67,5 +67,8 @@ class Level (val width: Int, val height: Int) {
         if (direction != null) hero.moveThroughLevel(this, Point(direction.x, direction.y))
     }
 
-    fun update() {}
+    fun update() {
+        // remainingPits = entities.filter { it is Pit }
+        // if remainingPits.size == 0 victory()
+    }
 }

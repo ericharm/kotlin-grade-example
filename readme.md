@@ -1,6 +1,6 @@
-`git clone git@github.com:ericharm/try-lanterna.git`
+`git clone git@github.com:ericharm/kotlin-sokoban.git`
 
-`cd try-lanterna`
+`cd kotlin-sokoban`
 
 `gradle build`
 
