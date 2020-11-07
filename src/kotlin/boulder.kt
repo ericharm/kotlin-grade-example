@@ -6,7 +6,7 @@ class Boulder(override var location: Point) : Entity(location) {
 
     override fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
         entities.forEach {
-            if (it is Target) {
+            if (it is Pit) {
                 listOf(this, it).forEach { entity: Entity -> level.pluckEntity(entity) }
                 return true
             }

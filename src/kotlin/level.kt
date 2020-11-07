@@ -44,7 +44,7 @@ class Level (val width: Int, val height: Int) {
                 // add one to account for border, come up with something nicer than this
                 if (rows[y][x] == '0') entities += Boulder(Point(x + 1, y + 1))
                 if (rows[y][x] == '#') entities += Wall(Point(x + 1, y + 1))
-                if (rows[y][x] == '^') entities += Target(Point(x + 1, y + 1))
+                if (rows[y][x] == '^') entities += Pit(Point(x + 1, y + 1))
                 if (rows[y][x] == '@') hero.moveTo(x + 1, y + 1)
             }
         }
