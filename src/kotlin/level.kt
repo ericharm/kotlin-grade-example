@@ -1,6 +1,7 @@
 package com.ericharm
 import java.io.File
 import com.googlecode.lanterna.graphics.TextGraphics
+import com.googlecode.lanterna.TextColor
 import com.googlecode.lanterna.input.KeyType
 
 class Level (val width: Int, val height: Int) {
@@ -21,7 +22,7 @@ class Level (val width: Int, val height: Int) {
     }
 
     object hero : Entity(Point(0, 0)) {
-        override val character = '@'
+        override val character = ColorChar('@', TextColor.ANSI.MAGENTA)
 
         override open fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
             entities.forEach {

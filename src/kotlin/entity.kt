@@ -1,5 +1,6 @@
 package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
+import com.googlecode.lanterna.TextCharacter
 import kotlin.random.*
 
 open class Entity(open var location: Point) {
@@ -7,10 +8,11 @@ open class Entity(open var location: Point) {
         get() = location.x
     val y: Int
         get() = location.y
-    open val character = '?'
+    open val character = TextCharacter('?')
 
     fun render(graphics: TextGraphics) {
-        graphics.putString(x, y, character.toString())
+        // graphics.putString(x, y, character)
+        graphics.setCharacter(x, y, character)
     }
 
     fun move(x: Int, y: Int) {
