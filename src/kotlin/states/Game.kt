@@ -6,7 +6,7 @@ import com.googlecode.lanterna.TerminalPosition
 import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
-class Game() {
+class Game(): State {
     val width = 50
     val height = 20
     val descriptor = File("./data/1a.lvl")
@@ -25,7 +25,7 @@ class Game() {
         putString(bottom, horizontalChar.toString().repeat(width))
     }
 
-    fun render(screen: TerminalScreen) {
+    override fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()
         val size = screen.getTerminal().getTerminalSize()
@@ -34,11 +34,11 @@ class Game() {
         screen.refresh()
     }
 
-    fun handleInput(key: KeyType) {
+    override fun handleInput(key: KeyType) {
         level.handleInput(key)
     }
 
-    fun update() {
+    override fun update() {
         level.update()
     }
 }
