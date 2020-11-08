@@ -25,16 +25,16 @@ class Level (val width: Int, val height: Int) {
 
     var entities: List<Entity> = listOf(hero)
 
+    data class CharAtPosition(val char: Char, val position: Point)
+
     fun generate(descriptor: String) {
         val rows = descriptor.split("\n").filter { it.length > 0 }
-        for (y in 0..rows.size - 1) {
-            for (x in 0..rows[y].length - 1) {
-                if (rows[y][x] == '0') entities += Boulder(Point(x, y))
-                if (rows[y][x] == '#') entities += Wall(Point(x, y))
-                if (rows[y][x] == '^') entities += Pit(Point(x, y))
-                if (rows[y][x] == 'X') entities += Exit(Point(x, y))
-                if (rows[y][x] == '@') hero.moveTo(x, y)
-            }
+        rows.eachLineEachChar { char: Char, position: Point ->
+            if (char == '0') entities += Boulder(position)
+            if (char == '#') entities += Wall(position)
+            if (char == '^') entities += Pit(position)
+            if (char == 'X') entities += Exit(position)
+            if (char == '@') hero.moveTo(position.x, position.y)
         }
         val width = if (rows.size > 0) rows[0].length else 0
         ScreenPosition.updateOffsetsForSize(TerminalSize(width, rows.size))

@@ -14,19 +14,15 @@ class Instructions(): State {
 
     fun formatInstructions(graphics: TextGraphics) {
         val rows = File("./data/instructions.txt").readText().split("\n")
-        for (y in 0..rows.size - 1) {
-            for (x in 0..rows[y].length - 1) {
-                val charX = ScreenPosition.offsetX + x
-                val charY = ScreenPosition.offsetY + y
-                if (rows[y][x] == '0') graphics.setCharacter(charX, charY, ColorChar('0', Boulder.color))
-                else if (rows[y][x] == '@') graphics.setCharacter(charX, charY, ColorChar('@', Hero.color))
-                else if (rows[y][x] == '^') graphics.setCharacter(charX, charY, ColorChar('^', Pit.color))
-                else if (rows[y][x] == 'X') graphics.setCharacter(charX, charY, ColorChar('X', Exit.color))
-                else graphics.setCharacter(charX, charY, ColorChar(rows[y][x], Entity.color))
-            }
+        rows.eachLineEachChar { char: Char, position: Point ->
+            val x = ScreenPosition.offsetX + position.x
+            val y = ScreenPosition.offsetY + position.y
+            if (char == '0') graphics.setCharacter(x, y, ColorChar('0', Boulder.color))
+            else if (char == '@') graphics.setCharacter(x, y, ColorChar('@', Hero.color))
+            else if (char == '^') graphics.setCharacter(x, y, ColorChar('^', Pit.color))
+            else if (char == 'X') graphics.setCharacter(x, y, ColorChar('X', Exit.color))
+            else graphics.setCharacter(x, y, ColorChar(char, Entity.color))
         }
-        val width = if (rows.size > 0) rows[0].length else 0
-        ScreenPosition.updateOffsetsForSize(TerminalSize(width, rows.size))
     }
 
     override fun render(screen: TerminalScreen) {
