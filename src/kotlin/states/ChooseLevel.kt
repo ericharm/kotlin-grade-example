@@ -9,11 +9,9 @@ import com.googlecode.lanterna.TextColor
 
 class ChooseLevel(): State {
     init {
-        ScreenPosition.updateOffsetsForSize(TerminalSize(30, 6))
+        ScreenPosition.updateOffsetsForSize(TerminalSize(24, 6))
     }
 
-    // val descriptor = File("./data/1a.lvl")
-    // val level = Level.fromDescriptor(descriptor)
     data class LevelOption(val name: String, val filename: String, val location: Point)
 
     val descriptors = listOf(

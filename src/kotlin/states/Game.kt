@@ -8,6 +8,7 @@ import com.googlecode.lanterna.input.KeyType
 class Game(val level: Level): State {
     override fun render(screen: TerminalScreen) {
         screen.clear()
+        screen.setCursorPosition(TerminalPosition(0, 0))
         val graphics = screen.newTextGraphics()
         level.render(graphics)
         screen.refresh()

@@ -14,6 +14,7 @@ class Instructions(): State {
 
     override fun render(screen: TerminalScreen) {
         screen.clear()
+        screen.setCursorPosition(TerminalPosition(0, 0))
         val graphics = screen.newTextGraphics()
         val instructions = listOf(
             "- Use the arrow keys to move the hero “@“",

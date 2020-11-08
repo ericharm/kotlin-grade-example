@@ -68,7 +68,7 @@ class Level (val width: Int, val height: Int) {
     }
 
     fun update() {
-        // remainingPits = entities.filter { it is Pit }
-        // if remainingPits.size == 0 App.swapCurrentState(Victory())
+        val remainingPits = entities.filter { it is Pit }
+        if (remainingPits.size == 0) App.swapCurrentState(Victory())
     }
 }

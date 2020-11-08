@@ -1,7 +1,6 @@
 package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.TextCharacter
-import kotlin.random.*
 
 open class Entity(open var location: Point) {
     val x: Int
