@@ -32,7 +32,11 @@ class MainMenu(): State {
     fun drawOptions(graphics: TextGraphics) {
         graphics.setForegroundColor(TextColor.ANSI.DEFAULT)
         menuOptions.forEach { text, point ->
-            graphics.putString(point.x + ScreenPosition.offsetX, point.y + ScreenPosition.offsetY, text.toString())
+            graphics.putString(
+                point.x + ScreenPosition.offsetX,
+                point.y + ScreenPosition.offsetY,
+                text.toString()
+            )
         }
     }
 

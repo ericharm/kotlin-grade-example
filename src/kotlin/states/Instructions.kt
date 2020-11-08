@@ -12,18 +12,27 @@ class Instructions(): State {
         ScreenPosition.updateOffsetsForSize(TerminalSize(40, 6))
     }
 
+    fun formatInstructions(graphics: TextGraphics) {
+        val rows = File("./data/instructions.txt").readText().split("\n")
+        for (y: Int in 0..rows.size - 1) {
+            for (x: Int in 0..rows[y].length - 1) {
+                val charX = ScreenPosition.offsetX + x
+                val charY = ScreenPosition.offsetY + y
+                if (rows[y][x] == '0') graphics.setCharacter(charX, charY, ColorChar('0', TextColor.ANSI.CYAN))
+                else if (rows[y][x] == '@') graphics.setCharacter(charX, charY, ColorChar('@', TextColor.ANSI.MAGENTA))
+                else if (rows[y][x] == '^') graphics.setCharacter(charX, charY, ColorChar('^', TextColor.ANSI.YELLOW))
+                else graphics.setCharacter(charX, charY, ColorChar(rows[y][x], TextColor.ANSI.DEFAULT))
+            }
+        }
+        val width = if (rows.size > 0) rows[0].length else 0
+        ScreenPosition.updateOffsetsForSize(TerminalSize(width, rows.size))
+    }
+
     override fun render(screen: TerminalScreen) {
         screen.clear()
         screen.setCursorPosition(TerminalPosition(0, 0))
         val graphics = screen.newTextGraphics()
-        val instructions = listOf(
-            "- Use the arrow keys to move the hero “@“",
-            "- Push the boulders “0” into the pits ^",
-            "- Escape to return to the main menu"
-        )
-        instructions.forEachIndexed { index, text ->
-            graphics.putString(ScreenPosition.offsetX, ScreenPosition.offsetY + index * 2, text)
-        }
+        formatInstructions(graphics)
         screen.refresh()
     }
 
