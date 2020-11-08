@@ -21,26 +21,14 @@ class Level (val width: Int, val height: Int) {
         }
     }
 
-    object hero : Entity(Point(0, 0)) {
-        override val character = ColorChar('@', TextColor.ANSI.MAGENTA)
-
-        override open fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
-            entities.forEach {
-                if (it is Boulder && it.moveThroughLevel(level, vector)) {
-                    move(vector.x, vector.y)
-                    return true
-                }
-            }
-            return false
-        }
-    }
+    val hero = Hero(Point(0, 0))
 
     var entities: List<Entity> = listOf(hero)
 
     fun generate(descriptor: String) {
         val rows = descriptor.split("\n").filter { it.length > 0 }
-        for (y: Int in 0..rows.size - 1) {
-            for (x: Int in 0..rows[y].length - 1) {
+        for (y in 0..rows.size - 1) {
+            for (x in 0..rows[y].length - 1) {
                 if (rows[y][x] == '0') entities += Boulder(Point(x, y))
                 if (rows[y][x] == '#') entities += Wall(Point(x, y))
                 if (rows[y][x] == '^') entities += Pit(Point(x, y))

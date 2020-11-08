@@ -1,12 +1,18 @@
 package com.ericharm
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.TextCharacter
+import com.googlecode.lanterna.TextColor
 
-open class Entity(open var location: Point) {
+abstract class Entity(open var location: Point) {
+    companion object {
+        val color = TextColor.ANSI.DEFAULT
+    }
+
     val x: Int
         get() = location.x
     val y: Int
         get() = location.y
+
     open val character = TextCharacter('?')
 
     fun render(graphics: TextGraphics) {

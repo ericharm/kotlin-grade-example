@@ -14,13 +14,13 @@ class Instructions(): State {
 
     fun formatInstructions(graphics: TextGraphics) {
         val rows = File("./data/instructions.txt").readText().split("\n")
-        for (y: Int in 0..rows.size - 1) {
-            for (x: Int in 0..rows[y].length - 1) {
+        for (y in 0..rows.size - 1) {
+            for (x in 0..rows[y].length - 1) {
                 val charX = ScreenPosition.offsetX + x
                 val charY = ScreenPosition.offsetY + y
-                if (rows[y][x] == '0') graphics.setCharacter(charX, charY, ColorChar('0', TextColor.ANSI.CYAN))
-                else if (rows[y][x] == '@') graphics.setCharacter(charX, charY, ColorChar('@', TextColor.ANSI.MAGENTA))
-                else if (rows[y][x] == '^') graphics.setCharacter(charX, charY, ColorChar('^', TextColor.ANSI.YELLOW))
+                if (rows[y][x] == '0') graphics.setCharacter(charX, charY, ColorChar('0', Boulder.color))
+                else if (rows[y][x] == '@') graphics.setCharacter(charX, charY, ColorChar('@', Hero.color))
+                else if (rows[y][x] == '^') graphics.setCharacter(charX, charY, ColorChar('^', Pit.color))
                 else graphics.setCharacter(charX, charY, ColorChar(rows[y][x], TextColor.ANSI.DEFAULT))
             }
         }

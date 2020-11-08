@@ -2,7 +2,11 @@ package com.ericharm
 import com.googlecode.lanterna.TextColor
 
 class Boulder(override var location: Point) : Entity(location) {
-    override val character = ColorChar('0', TextColor.ANSI.CYAN)
+    companion object {
+        val color = TextColor.ANSI.CYAN
+    }
+
+    override val character = ColorChar('0', color)
 
     override fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
         entities.forEach {

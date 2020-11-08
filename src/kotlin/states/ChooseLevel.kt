@@ -68,7 +68,5 @@ class ChooseLevel(): State {
         }
     }
 
-    override fun update() {
-        // level.update()
-    }
+    override fun update() { }
 }
