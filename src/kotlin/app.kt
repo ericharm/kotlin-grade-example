@@ -29,6 +29,7 @@ class App {
 
     init {
         val factory = DefaultTerminalFactory()
+        factory.setTerminalEmulatorTitle("Sokoban")
         factory.setTerminalEmulatorFrameAutoCloseTrigger(TerminalEmulatorAutoCloseTrigger.CloseOnExitPrivateMode)
         val terminal = factory.createTerminal()
         val screen = TerminalScreen(terminal)
