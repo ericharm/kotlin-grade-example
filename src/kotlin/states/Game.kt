@@ -5,10 +5,7 @@ import com.googlecode.lanterna.TerminalPosition
 import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
-class Game(): State {
-    val descriptor = File("./data/1a.lvl")
-    val level = Level.fromDescriptor(descriptor)
-
+class Game(val level: Level): State {
     override fun render(screen: TerminalScreen) {
         screen.clear()
         val graphics = screen.newTextGraphics()

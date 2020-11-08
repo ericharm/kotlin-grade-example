@@ -9,7 +9,7 @@ import com.googlecode.lanterna.TextColor
 
 class MainMenu(): State {
     init {
-        ScreenPosition.updateOffsetsForSize(TerminalSize(20, 6))
+        ScreenPosition.updateOffsetsForSize(TerminalSize(20, 4))
     }
 
     enum class MenuOption {
@@ -64,7 +64,7 @@ class MainMenu(): State {
             if (ordinal > 0) selectedOption = MenuOption.values()[ordinal - 1]
         }
         if (key == KeyType.Enter) {
-            if (selectedOption == MenuOption.PLAY) App.swapCurrentState(Game())
+            if (selectedOption == MenuOption.PLAY) App.swapCurrentState(ChooseLevel())
             if (selectedOption == MenuOption.INSTRUCTIONS) App.swapCurrentState(Instructions())
         }
     }
