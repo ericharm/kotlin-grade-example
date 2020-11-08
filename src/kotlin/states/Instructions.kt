@@ -40,7 +40,5 @@ class Instructions(): State {
         if (key == KeyType.Escape || key == KeyType.Enter) App.swapCurrentState(MainMenu())
     }
 
-    override fun update() {
-        // level.update()
-    }
+    override fun update() {}
 }
