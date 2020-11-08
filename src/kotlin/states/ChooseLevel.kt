@@ -52,19 +52,24 @@ class ChooseLevel(): State {
 
     override fun handleInput(key: KeyType) {
         val column = if (selectedLevel % 2 == 0) Sides.LEFT else Sides.RIGHT
-        if (key == KeyType.ArrowRight && selectedLevel < descriptors.size - 1) selectedLevel += 1
-        else if (key == KeyType.ArrowLeft && selectedLevel > 0) selectedLevel -= 1
-        else if (key == KeyType.ArrowDown) {
-            if (column == Sides.LEFT && selectedLevel <= descriptors.size / 2) selectedLevel += 2
-            else if (column == Sides.RIGHT && selectedLevel < descriptors.size - 1) selectedLevel += 2
-        } else if (key == KeyType.ArrowUp) {
-            if (column == Sides.LEFT && selectedLevel > 0) selectedLevel -= 2
-            else if (column == Sides.RIGHT && selectedLevel > 1) selectedLevel -= 2
-        } else if (key == KeyType.Escape) App.swapCurrentState(MainMenu())
-        else if (key == KeyType.Enter) {
-            val descriptor = File(descriptors[selectedLevel].filename)
-            var level = Level.fromDescriptor(descriptor)
-            App.swapCurrentState(Game(level))
+        when (key) {
+            KeyType.Escape -> App.swapCurrentState(MainMenu())
+            KeyType.ArrowLeft -> if (key == KeyType.ArrowLeft && selectedLevel > 0) selectedLevel -= 1
+            KeyType.ArrowRight -> if (selectedLevel < descriptors.size - 1) selectedLevel += 1
+            KeyType.ArrowUp -> {
+                if (column == Sides.LEFT && selectedLevel > 0) selectedLevel -= 2
+                else if (column == Sides.RIGHT && selectedLevel > 1) selectedLevel -= 2
+            }
+            KeyType.ArrowDown -> {
+                if (column == Sides.LEFT && selectedLevel <= descriptors.size / 2) selectedLevel += 2
+                else if (column == Sides.RIGHT && selectedLevel < descriptors.size - 1) selectedLevel += 2
+            }
+            KeyType.Enter -> {
+                val descriptor = File(descriptors[selectedLevel].filename)
+                var level = Level.fromDescriptor(descriptor)
+                App.swapCurrentState(Game(level))
+            }
+            else -> {}
         }
     }
 

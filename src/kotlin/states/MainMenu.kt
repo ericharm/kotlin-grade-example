@@ -59,17 +59,17 @@ class MainMenu(): State {
     }
 
     override fun handleInput(key: KeyType) {
-        if (key == KeyType.ArrowDown) {
-            val ordinal = selectedOption.ordinal
-            if (ordinal < MenuOption.values().size - 1) selectedOption = MenuOption.values()[ordinal + 1]
-        }
-        if (key == KeyType.ArrowUp) {
-            val ordinal = selectedOption.ordinal
-            if (ordinal > 0) selectedOption = MenuOption.values()[ordinal - 1]
-        }
-        if (key == KeyType.Enter) {
-            if (selectedOption == MenuOption.PLAY) App.swapCurrentState(ChooseLevel())
-            if (selectedOption == MenuOption.INSTRUCTIONS) App.swapCurrentState(Instructions())
+        val ordinal = selectedOption.ordinal
+        when (key) {
+            KeyType.ArrowUp -> if (ordinal > 0) selectedOption = MenuOption.values()[ordinal - 1]
+            KeyType.ArrowDown -> {
+                if (ordinal < MenuOption.values().size - 1) selectedOption = MenuOption.values()[ordinal + 1]
+            }
+            KeyType.Enter -> {
+                if (selectedOption == MenuOption.PLAY) App.swapCurrentState(ChooseLevel())
+                if (selectedOption == MenuOption.INSTRUCTIONS) App.swapCurrentState(Instructions())
+            }
+            else -> {}
         }
     }
 

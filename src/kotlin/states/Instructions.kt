@@ -17,11 +17,13 @@ class Instructions(): State {
         rows.eachLineEachChar { char: Char, position: Point ->
             val x = ScreenPosition.offsetX + position.x
             val y = ScreenPosition.offsetY + position.y
-            if (char == '0') graphics.setCharacter(x, y, ColorChar('0', Boulder.color))
-            else if (char == '@') graphics.setCharacter(x, y, ColorChar('@', Hero.color))
-            else if (char == '^') graphics.setCharacter(x, y, ColorChar('^', Pit.color))
-            else if (char == 'X') graphics.setCharacter(x, y, ColorChar('X', Exit.color))
-            else graphics.setCharacter(x, y, ColorChar(char, Entity.color))
+            when (char) {
+                '0' -> graphics.setCharacter(x, y, ColorChar('0', Boulder.color))
+                '@' -> graphics.setCharacter(x, y, ColorChar('@', Hero.color))
+                '^' -> graphics.setCharacter(x, y, ColorChar('^', Pit.color))
+                'X' -> graphics.setCharacter(x, y, ColorChar('X', Exit.color))
+                else -> graphics.setCharacter(x, y, ColorChar(char, Entity.color))
+            }
         }
     }
 

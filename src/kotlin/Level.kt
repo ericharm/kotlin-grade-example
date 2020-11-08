@@ -30,11 +30,13 @@ class Level (val width: Int, val height: Int) {
     fun generate(descriptor: String) {
         val rows = descriptor.split("\n").filter { it.length > 0 }
         rows.eachLineEachChar { char: Char, position: Point ->
-            if (char == '0') entities += Boulder(position)
-            if (char == '#') entities += Wall(position)
-            if (char == '^') entities += Pit(position)
-            if (char == 'X') entities += Exit(position)
-            if (char == '@') hero.moveTo(position.x, position.y)
+            when (char) {
+                '0' -> entities += Boulder(position)
+                '#' -> entities += Wall(position)
+                '^' -> entities += Pit(position)
+                'X' -> entities += Exit(position)
+                '@' -> hero.moveTo(position.x, position.y)
+            }
         }
         val width = if (rows.size > 0) rows[0].length else 0
         ScreenPosition.updateOffsetsForSize(TerminalSize(width, rows.size))
