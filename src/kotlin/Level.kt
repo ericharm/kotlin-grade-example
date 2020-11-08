@@ -32,6 +32,7 @@ class Level (val width: Int, val height: Int) {
                 if (rows[y][x] == '0') entities += Boulder(Point(x, y))
                 if (rows[y][x] == '#') entities += Wall(Point(x, y))
                 if (rows[y][x] == '^') entities += Pit(Point(x, y))
+                if (rows[y][x] == 'X') entities += Exit(Point(x, y))
                 if (rows[y][x] == '@') hero.moveTo(x, y)
             }
         }
@@ -55,8 +56,5 @@ class Level (val width: Int, val height: Int) {
         if (direction != null) hero.moveThroughLevel(this, Point(direction.x, direction.y))
     }
 
-    fun update() {
-        val remainingPits = entities.filter { it is Pit }
-        if (remainingPits.size == 0) App.swapCurrentState(Victory())
-    }
+    fun update() {}
 }

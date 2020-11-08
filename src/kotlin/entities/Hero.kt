@@ -13,7 +13,7 @@ class Hero(override var location: Point) : Entity(location) {
             if (it is Boulder && it.moveThroughLevel(level, vector)) {
                 move(vector.x, vector.y)
                 return true
-            }
+            } else if (it is Exit) App.swapCurrentState(Victory())
         }
         return false
     }

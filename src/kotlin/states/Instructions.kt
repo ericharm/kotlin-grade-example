@@ -21,7 +21,8 @@ class Instructions(): State {
                 if (rows[y][x] == '0') graphics.setCharacter(charX, charY, ColorChar('0', Boulder.color))
                 else if (rows[y][x] == '@') graphics.setCharacter(charX, charY, ColorChar('@', Hero.color))
                 else if (rows[y][x] == '^') graphics.setCharacter(charX, charY, ColorChar('^', Pit.color))
-                else graphics.setCharacter(charX, charY, ColorChar(rows[y][x], TextColor.ANSI.DEFAULT))
+                else if (rows[y][x] == 'X') graphics.setCharacter(charX, charY, ColorChar('X', Exit.color))
+                else graphics.setCharacter(charX, charY, ColorChar(rows[y][x], Entity.color))
             }
         }
         val width = if (rows.size > 0) rows[0].length else 0

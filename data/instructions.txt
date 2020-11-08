@@ -2,4 +2,6 @@
                                          
 - Push the boulders “0” into the pits “^“
                                          
+- Step on the exit “X” to win            
+                                         
 - Press escape to return to the main menu
