@@ -1,33 +1,10 @@
 package com.ericharm
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.TerminalPosition
-import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.graphics.TextGraphics
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import com.googlecode.lanterna.terminal.swing.TerminalEmulatorAutoCloseTrigger
 import java.util.Stack
-
-object ScreenPosition {
-    var terminalSize = TerminalSize(0, 0)
-    var offsetX = 0
-    var offsetY = 0
-
-    fun updateOffsetsForSize(size: TerminalSize) {
-        offsetX = (terminalSize.getColumns() / 2) - (size.getColumns() / 2) - 1
-        offsetY = (terminalSize.getRows() / 2) - (size.getRows() / 2) - 1
-    }
-}
-
-
-fun List<String>.eachLineEachChar(action: (char: Char, position: Point) -> Unit) {
-    for (row in 0..this.size - 1) {
-        for (column in 0..this[row].length - 1) {
-            val char = this[row][column]
-            val position = Point(column, row)
-            action(char, position)
-        }
-    }
-}
 
 class App {
     companion object {
