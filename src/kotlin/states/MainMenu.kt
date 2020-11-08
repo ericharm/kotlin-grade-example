@@ -9,7 +9,7 @@ import com.googlecode.lanterna.TextColor
 
 class MainMenu(): State {
     init {
-        ScreenPosition.updateOffsetsForSize(TerminalSize(20, 4))
+        ScreenPosition.updateOffsetsForSize(TerminalSize(15, 4))
     }
 
     enum class MenuOption {
@@ -25,8 +25,8 @@ class MainMenu(): State {
 
     fun drawTitle(graphics: TextGraphics) {
         graphics.setForegroundColor(TextColor.ANSI.GREEN)
-        graphics.putString(ScreenPosition.offsetX, ScreenPosition.offsetY - 4, "Sokoban")
-        graphics.putString(ScreenPosition.offsetX, ScreenPosition.offsetY - 3, "-------")
+        graphics.putString(ScreenPosition.offsetX, ScreenPosition.offsetY - 3, "Sokoban")
+        graphics.putString(ScreenPosition.offsetX, ScreenPosition.offsetY - 2, "-------")
     }
 
     fun drawOptions(graphics: TextGraphics) {

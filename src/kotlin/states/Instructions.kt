@@ -37,7 +37,7 @@ class Instructions(): State {
     }
 
     override fun handleInput(key: KeyType) {
-        if (key == KeyType.Escape) App.swapCurrentState(MainMenu())
+        if (key == KeyType.Escape || key == KeyType.Enter) App.swapCurrentState(MainMenu())
     }
 
     override fun update() {
