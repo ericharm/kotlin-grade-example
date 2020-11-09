@@ -5,3 +5,5 @@
 `gradle build`
 
 `gradle run`
+
+based on the [Sokoban branch of NetHack](https://nethackwiki.com/wiki/Sokoban)
