@@ -24,8 +24,6 @@ class Level (val width: Int, val height: Int) {
 
     var entities: List<Entity> = listOf(hero)
 
-    data class CharAtPosition(val char: Char, val position: Point)
-
     fun generate(descriptor: String) {
         val rows = descriptor.split("\n").filter { it.length > 0 }
         rows.eachLineEachChar { char: Char, position: Point ->
