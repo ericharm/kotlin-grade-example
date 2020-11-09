@@ -1,7 +1,6 @@
 package com.ericharm
 import java.io.File
 import com.googlecode.lanterna.graphics.TextGraphics
-import com.googlecode.lanterna.TextColor
 import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 

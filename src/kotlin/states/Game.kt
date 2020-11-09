@@ -1,8 +1,6 @@
 package com.ericharm
-import java.io.File
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.TerminalPosition
-import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.input.KeyType
 
 class Game(val level: Level): State {
