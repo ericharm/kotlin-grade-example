@@ -12,14 +12,9 @@ class MainMenu(): State {
         ScreenPosition.updateOffsetsForSize(TerminalSize(15, 4))
     }
 
-    enum class MenuOption {
-        PLAY, INSTRUCTIONS
-    }
+    enum class MenuOption { PLAY, INSTRUCTIONS }
 
-    val menuOptions = mapOf(
-        MenuOption.PLAY to Point(0, 1),
-        MenuOption.INSTRUCTIONS to Point(0, 3)
-    )
+    val menuOptions = mapOf(MenuOption.PLAY to Point(0, 1), MenuOption.INSTRUCTIONS to Point(0, 3))
 
     var selectedOption = MenuOption.PLAY
 
