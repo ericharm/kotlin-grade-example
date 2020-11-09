@@ -10,7 +10,7 @@ class Level (val width: Int, val height: Int) {
             val rows = descriptor.split("\n").filter { it.length > 0 }
             val width = if (rows.size > 0) rows[0].length else 0
             val level = Level(width, rows.size)
-            level.generate(descriptor)
+            level.generate(rows)
             return level
         }
 
@@ -24,8 +24,7 @@ class Level (val width: Int, val height: Int) {
 
     var entities: List<Entity> = listOf(hero)
 
-    fun generate(descriptor: String) {
-        val rows = descriptor.split("\n").filter { it.length > 0 }
+    fun generate(rows: List<String>) {
         rows.eachLineEachChar { char: Char, position: Point ->
             when (char) {
                 '0' -> entities += Boulder(position)

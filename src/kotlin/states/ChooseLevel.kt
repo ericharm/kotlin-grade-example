@@ -38,11 +38,9 @@ class ChooseLevel(): State {
         screen.clear()
         val graphics = screen.newTextGraphics()
         descriptors.forEach {
-            graphics.putString(
-                ScreenPosition.offsetX + it.location.x,
-                ScreenPosition.offsetY + it.location.y,
-                it.name
-            )
+            val x = ScreenPosition.offsetX + it.location.x
+            val y = ScreenPosition.offsetY + it.location.y
+            graphics.putString(x, y, it.name)
         }
         drawCursor(screen)
         screen.refresh()

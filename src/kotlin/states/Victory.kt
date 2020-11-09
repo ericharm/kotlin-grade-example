@@ -18,11 +18,9 @@ class Victory(): State {
         ScreenPosition.updateOffsetsForSize(TerminalSize(width, 5))
         screen.clear()
         val graphics = screen.newTextGraphics()
-        graphics.drawRectangle(
-            TerminalPosition(ScreenPosition.offsetX, ScreenPosition.offsetY),
-            TerminalSize(width, 5),
-            '+'
-        )
+        val x = TerminalPosition(ScreenPosition.offsetX, ScreenPosition.offsetY)
+        val y = TerminalSize(width, 5)
+        graphics.drawRectangle(x, y, '+')
         graphics.putString(ScreenPosition.offsetX + 2, ScreenPosition.offsetY + 2, message)
         screen.refresh()
     }

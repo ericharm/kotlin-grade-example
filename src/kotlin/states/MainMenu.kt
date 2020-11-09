@@ -32,20 +32,18 @@ class MainMenu(): State {
     fun drawOptions(graphics: TextGraphics) {
         graphics.setForegroundColor(TextColor.ANSI.DEFAULT)
         menuOptions.forEach { text, point ->
-            graphics.putString(
-                point.x + ScreenPosition.offsetX,
-                point.y + ScreenPosition.offsetY,
-                text.toString()
-            )
+            val x = point.x + ScreenPosition.offsetX
+            val y = point.y + ScreenPosition.offsetY
+            graphics.putString(x, y, text.toString())
         }
     }
 
     fun drawCursor(screen: TerminalScreen) {
         val point = menuOptions[selectedOption]
         if (point != null) {
-            val cursorX = point.x + ScreenPosition.offsetX - 2
-            val cursorY = point.y + ScreenPosition.offsetY
-         screen.setCursorPosition(TerminalPosition(cursorX, cursorY))
+            val x = point.x + ScreenPosition.offsetX - 2
+            val y = point.y + ScreenPosition.offsetY
+            screen.setCursorPosition(TerminalPosition(x, y))
         }
     }
 
