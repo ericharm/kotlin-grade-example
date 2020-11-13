@@ -8,7 +8,7 @@ class Hero(override var location: Point) : Entity(location) {
 
     override val character = ColorChar('@', color)
 
-    override open fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
+    override fun onCollidesWith(entities: List<Entity>, level: Level, vector: Point): Boolean {
         entities.forEach {
             if (it is Boulder && it.moveThroughLevel(level, vector)) {
                 move(vector.x, vector.y)

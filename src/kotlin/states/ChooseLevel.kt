@@ -62,8 +62,7 @@ class ChooseLevel(): State {
             }
             KeyType.Enter -> {
                 val descriptor = File(descriptors[selectedLevel].filename)
-                var level = Level.fromDescriptor(descriptor)
-                App.swapCurrentState(Game(level))
+                App.swapCurrentState(Game().apply { level = Level.fromDescriptor(descriptor) })
             }
             else -> {}
         }

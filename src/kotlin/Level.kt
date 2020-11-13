@@ -51,7 +51,7 @@ class Level (val width: Int, val height: Int) {
             KeyType.ArrowDown to Point(0, 1), KeyType.ArrowUp to Point(0, -1),
             KeyType.ArrowLeft to Point(-1, 0), KeyType.ArrowRight to Point(1, 0)
         )[key]
-        if (direction != null) hero.moveThroughLevel(this, Point(direction.x, direction.y))
+        direction?.let { hero.moveThroughLevel(this, Point(direction.x, direction.y)) }
     }
 
     fun update() {}
